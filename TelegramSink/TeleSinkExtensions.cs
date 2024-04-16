@@ -11,7 +11,7 @@ namespace TelegramSink
             this LoggerSinkConfiguration config, 
             string telegramApiKey, 
             string telegramChatId,
-            string? telegramMessageThreadId,
+            string? telegramMessageThreadId = null,
             IFormatProvider? formatProvider = null, 
             LogEventLevel minimumLevel=LogEventLevel.Verbose)
         {
