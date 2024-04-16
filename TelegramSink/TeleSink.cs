@@ -5,32 +5,26 @@ using TelegramSink.TelegramBotClient;
 
 namespace TelegramSink
 {
-    public class TeleSink : ILogEventSink
+    public class TeleSink(
+        IFormatProvider? formatProvider,
+        string telegramApiKey,
+        string chatId,
+        LogEventLevel minimumLevel,
+        string? messageThreadId = null)
+        : ILogEventSink
     {
-        private readonly IFormatProvider _formatProvider;
-        private readonly LogEventLevel _minimumLevel;
-        private readonly Bot _telegramBot;
-
-        public TeleSink(IFormatProvider formatProvider, string telegramApiKey, string chatId) : this(formatProvider, telegramApiKey, chatId, LogEventLevel.Verbose)
+        private readonly Bot _telegramBot = new(botConfiguration: new BotConfiguration
         {
-        }
+            ChatId = chatId,
+            ApiKey = telegramApiKey,
+            MessageThreadId = messageThreadId
+        });
 
-        public TeleSink(IFormatProvider formatProvider, string telegramApiKey, string chatId, LogEventLevel minimumLevel)
-        {
-            _formatProvider = formatProvider;
-            _minimumLevel = minimumLevel;
-            _telegramBot = new Bot(botConfiguration: new BotConfiguration
-            {
-                ApiKey = telegramApiKey,
-                ChatId = chatId
-            });
-        }
-
-		public void Emit(LogEvent logEvent)
+        public void Emit(LogEvent logEvent)
 		{
-		    if (logEvent.Level < _minimumLevel) return;
+		    if (logEvent.Level < minimumLevel) return;
 
-            var loggedMessage = logEvent.RenderMessage(_formatProvider);
+            var loggedMessage = logEvent.RenderMessage(formatProvider);
             
             _telegramBot.SendMessage(loggedMessage);
         }
