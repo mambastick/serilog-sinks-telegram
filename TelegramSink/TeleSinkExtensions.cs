@@ -10,11 +10,17 @@ namespace TelegramSink
         public static LoggerConfiguration TeleSink(
             this LoggerSinkConfiguration config, 
             string telegramApiKey, 
-            string telegramChatId, 
-            IFormatProvider formatProvider = null, 
+            string telegramChatId,
+            string? telegramMessageThreadId,
+            IFormatProvider? formatProvider = null, 
             LogEventLevel minimumLevel=LogEventLevel.Verbose)
         {
-            return config.Sink(new TeleSink(formatProvider, telegramApiKey, telegramChatId, minimumLevel));
+            return config.Sink(new TeleSink(
+                formatProvider: formatProvider, 
+                telegramApiKey:telegramApiKey,
+                chatId: telegramChatId, 
+                minimumLevel: minimumLevel,
+                messageThreadId: telegramMessageThreadId));
         }
     }
 }
