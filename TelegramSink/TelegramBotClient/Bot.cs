@@ -24,7 +24,7 @@ namespace TelegramSink.TelegramBotClient
         }
     }
 
-    public class RestResult
+    public abstract class RestResult
     {
 		public bool Ok { get; set; }
         public Message Result { get; set; }
