@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Flurl;
+﻿using Flurl;
 using Flurl.Http;
 using TelegramSink.TelegramBotClient.Domain;
 

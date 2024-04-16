@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Xunit;
 using Serilog;
-using Serilog.Events;
 using TelegramSink.TelegramBotClient;
 
 namespace TelegramSink.Test
