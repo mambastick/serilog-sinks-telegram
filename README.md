@@ -36,6 +36,18 @@ new LoggerConfiguration()
 
 ```
 
+Optionally a telegram forum topic can be specified:
+```csharp
+new LoggerConfiguration()
+   .MinimumLevel.Information()
+   .WriteTo.TeleSink(
+      telegramApiKey:"my-bot-api-key",
+      telegramChatId:"the target chat id",
+      telegramMessageThreadId: "the target topic id")
+   .CreateLogger();
+
+```
+
 ### Q.A.
 **How do i discover the chat id parameter?**
 
