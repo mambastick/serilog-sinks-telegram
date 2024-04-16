@@ -12,7 +12,7 @@ Note that a Telegram bot api key is required in order to configure the sink, if 
 # Configuration
 To configure the sink simply add "TeleSink" using the "WriteTo" method on the Serilog logger configuration.
 
-```c#
+```csharp
 
 new LoggerConfiguration()
    .MinimumLevel.Information()
@@ -24,7 +24,7 @@ new LoggerConfiguration()
 
 Optionally a minimum log level can be specified:
 
-```c#
+```csharp
 
 new LoggerConfiguration()
    .MinimumLevel.Information()
