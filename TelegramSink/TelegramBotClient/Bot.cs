@@ -11,8 +11,13 @@ namespace TelegramSink.TelegramBotClient
         public RestResult SendMessage(string message)
         {
             var response = TelegramApiBaseUrl
-                .AppendPathSegment($"bot{_botConfiguration.ApiKey}/sendMessage")
-                .PostJsonAsync(new { chat_id=_botConfiguration.ChatId, text=message })
+                .AppendPathSegment($"bot{botConfiguration.ApiKey}/sendMessage")
+                .PostJsonAsync(new 
+                    {
+                        chat_id = botConfiguration.ChatId,
+                        message_thread_id = botConfiguration.MessageThreadId, 
+                        text = message 
+                    })
                 .ReceiveJson<RestResult>().Result;
 
             return response;
