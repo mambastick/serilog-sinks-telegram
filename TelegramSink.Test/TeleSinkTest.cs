@@ -25,7 +25,15 @@ namespace TelegramSink.Test
         public void ConfigurationTest()
         {
             var botConfig = LoadConfiguration();
-            var log = new LoggerConfiguration().MinimumLevel.Information().WriteTo.TeleSink(telegramApiKey:botConfig.ApiKey, telegramChatId:botConfig.ChatId).CreateLogger();
+            var log = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .WriteTo
+                .TeleSink(
+                    telegramApiKey: botConfig.ApiKey, 
+                    telegramChatId: botConfig.ChatId,
+                    telegramMessageThreadId: botConfig.MessageThreadId
+                    )
+                .CreateLogger();
             Assert.NotNull(log);
         }
 
@@ -33,8 +41,13 @@ namespace TelegramSink.Test
         public void ShouldLogMessage()
         {
             var botConfig = LoadConfiguration();
-			var log = new LoggerConfiguration().MinimumLevel.Information().WriteTo.TeleSink(telegramApiKey: botConfig.ApiKey, telegramChatId: botConfig.ChatId).CreateLogger();
+            var log = new LoggerConfiguration().MinimumLevel.Information().WriteTo
+                .TeleSink(
+                    telegramApiKey: botConfig.ApiKey,
+                    telegramChatId: botConfig.ChatId,
+                    telegramMessageThreadId: botConfig.MessageThreadId)
+                .CreateLogger();
             log.Information("Hello World!");
-		}
+        }
     }
 }
