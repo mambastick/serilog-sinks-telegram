@@ -4,15 +4,9 @@ using TelegramSink.TelegramBotClient.Domain;
 
 namespace TelegramSink.TelegramBotClient
 {
-    public class Bot
+    public class Bot(BotConfiguration botConfiguration)
     {
-        private readonly BotConfiguration _botConfiguration;
         private const string TelegramApiBaseUrl = "https://api.telegram.org";
-
-        public Bot(BotConfiguration botConfiguration)
-        {
-            _botConfiguration = botConfiguration;
-        }
 
         public RestResult SendMessage(string message)
         {
