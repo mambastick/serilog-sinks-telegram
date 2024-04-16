@@ -1,6 +1,7 @@
 {
   "Telegram": {
     "ApiKey": "",
-    "ChatId": ""
+    "ChatId": "",
+    "MessageThreadId": ""
   } 
 }
